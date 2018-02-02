@@ -1,5 +1,5 @@
 '''
-Setup for the parc-reader, a utility for reading the PARC3 dataset and
+Setup for the brat-reader, a utility for reading the PARC3 dataset and
 parallel CoreNLP annotations, designed to make working with the PARC3 
 dataset easy in Python.
 '''
@@ -13,23 +13,23 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'parc_reader/README.md'), encoding='utf-8') as f:
+with open(path.join(here, 'brat_reader/README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='parc-reader',
+    name='brat-reader',
 
     # Versions should comply with PEP440.  For a discussion on 
 	# single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.1.4',
+    version='0.0.0',
 
     description='Work with the PARC dataset in Python',
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/enewe101/parc-reader',
+    url='https://github.com/enewe101/brat-reader',
 
     # Author details
     author='Edward Newell',
@@ -59,19 +59,12 @@ setup(
 
     # What does your project relate to?
     keywords= (
-		'NLP natrual language processing computational linguistics '
-		'Penn Attribution Relation Corpus PARC PARC3'
-	),
+        'BRAT annotation NLP natrual language processing '
+        'computational linguistics' 
+    ),
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=['parc_reader'],
-	#indlude_package_data=True,
-	package_data={'': [
-		'README.md',
-		'data/example-raw.txt',
-		'data/example-parc.xml',
-		'data/example-corenlp.xml',
-	]},
-	install_requires=['bs4', 'corenlp-xml-reader>=0.1.2']
+    packages=['brat_reader'],
+    install_requires=['bs4', 'corenlp-xml-reader>=0.1.2']
 )

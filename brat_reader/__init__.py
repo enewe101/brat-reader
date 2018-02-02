@@ -1,0 +1,1 @@
+from brat_annotated_text import BratAnnotatedText

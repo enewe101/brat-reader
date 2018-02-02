@@ -1,2 +1,1 @@
-include parc_reader/README.md
-include parc_reader/data/*
+include brat_reader/README.md
