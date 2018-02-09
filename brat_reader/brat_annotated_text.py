@@ -19,6 +19,8 @@ class BratAnnotatedText(object):
                 self.parse_span(line)
             elif line.startswith('E'):
                 self.parse_event(line)
+            elif line.startswith('#'):  # Signals an annotator comment
+                pass
             else:
                 print line
                 raise ValueError('Malformed annotation text')
