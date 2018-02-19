@@ -1,15 +1,39 @@
 from collections import defaultdict
 import t4k
+from copy import deepcopy
+
+def count_attributions(annotation_text):
+    return len([
+        line for line in annotation_text.split('\n') if line.startswith('E')
+    ])
+
 
 class BratAnnotatedText(object):
 
 
-    def __init__(self, annotation_text):
-        self.events = {}
-        self.spans = {}
-        self.all_span_ids = set()
-        self.parse(annotation_text)
+    def __init__(self, annotation_text=None, events=None, spans=None):
+        if annotation_text is not None:
+            self.events = {}
+            self.spans = {}
+            self.all_span_ids = set()
+            self.parse(annotation_text)
+        elif events is not None and spans is not None:
+            self.events = deepcopy(events)
+            self.spans = deepcopy(spans)
+            self.all_span_ids = set(self.spans.keys())
+        else:
+            raise ValueError(
+                'Must specify either annotation_text or events and spans')
+
+        self.make_events_by_span()
         self.validate()
+
+
+    def make_events_by_span(self):
+        self.events_by_span = defaultdict(list)
+        for event_id, spans in self.events.iteritems():
+            for role, span_id in spans:
+                self.events_by_span[span_id].append(event_id)
 
 
     def parse(self, annotation_text):
